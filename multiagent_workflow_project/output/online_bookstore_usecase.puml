@@ -1,0 +1,30 @@
+@startuml
+title 在线书店系统
+actor "顾客" as 顾客
+actor "管理员" as 管理员
+actor "支付系统" as 支付系统
+usecase "用户注册" as 用户注册
+usecase "用户登录" as 用户登录
+usecase "浏览图书" as 浏览图书
+usecase "搜索图书" as 搜索图书
+usecase "添加图书到购物车" as 添加图书到购物车
+usecase "创建订单" as 创建订单
+usecase "支付订单" as 支付订单
+usecase "评价图书" as 评价图书
+usecase "管理库存" as 管理库存
+usecase "管理订单" as 管理订单
+顾客 --> 用户注册
+顾客 --> 用户登录
+顾客 --> 浏览图书
+顾客 --> 搜索图书
+顾客 --> 添加图书到购物车
+顾客 --> 创建订单
+创建订单 ..> 浏览图书 : <<include>>
+创建订单 ..> 搜索图书 : <<include>>
+顾客 --> 支付订单
+支付订单 ..> 创建订单 : <<include>>
+顾客 --> 评价图书
+评价图书 ..> 订单完成后 : <<extend>>
+管理员 --> 管理库存
+管理员 --> 管理订单
+@enduml
